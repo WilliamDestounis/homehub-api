@@ -84,7 +84,7 @@ router.post("/register", async (req,res)=>{
     }
     }catch(e){
         console.log(e)
-        return res.json({message:"error})
+        return res.json({message:"error"})
     }
     
 

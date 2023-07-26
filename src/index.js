@@ -44,6 +44,8 @@ dotenv.config()
 // defining env variable to secure 
 const env_variable = process.env.PASS
 
+console.log(env_variable)
+
 //using mongoose to connect to MongoDB database
 mongoose.connect(`mongodb+srv://testAdmin:${env_variable}@homehubserver.yi9s3vq.mongodb.net/homehubserver?retryWrites=true&w=majority`);
 

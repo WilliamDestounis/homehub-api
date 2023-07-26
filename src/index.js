@@ -44,8 +44,38 @@ app.use("/ledger",ledgerRouter)
 
 app.use("/remove",removeRouter)
 
-//using mongoose to connect to MongoDB database
-mongoose.connect(`mongodb+srv://testAdmin:${env_variable}@homehubserver.yi9s3vq.mongodb.net/homehubserver?retryWrites=true&w=majority`);
+//use mongoose to connect to MongoDB database
+mongoose.connect(
+  `mongodb+srv://testAdmin:${env_variable}@homehubserver.yi9s3vq.mongodb.net/homehubserver?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
-//hosting on local server
-app.listen(3001,()=>console.log("Sever Started"))
+//get the default connection
+const db = mongoose.connection;
+let con = true
+
+//event listeners for database connection status
+db.on('error', (error) => {
+    con = false
+  console.error('MongoDB Connection Error:', error);
+});
+
+db.on('connected', () => {
+  console.log('Connected to MongoDB!');
+});
+
+db.on('disconnected', () => {
+  console.log('Disconnected from MongoDB!');
+    con = false
+});
+
+// Start the server
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`Connection Status: ${con}`)
+
+});

@@ -30,6 +30,7 @@ router.get("/:userId",verifyJWT, async (req,res)=>{
 });
 
 //put request to update database object information
+
 router.put("/addTodo",verifyJWT, async (req,res)=>{
 
     //information collected from 
@@ -39,15 +40,20 @@ router.put("/addTodo",verifyJWT, async (req,res)=>{
     const user = await UserModel.findById(userId)
     const home = await HomeModel.findById(user.homeId)
 
-    //new todo is added to the homes todolist and saved
-    home.todo.push(newTodo)
-    await home.save()
+    if(home){
 
-    return res.json(
-            {
-                message:"uploaded todo",
+        //new todo is added to the homes todolist and saved
+        home.todo.push(newTodo)
+        await home.save()
+
+        return res.json({
                 newTodoList: home.todo
-            })     
+            })
+    }else{
+        return res.json({
+                message:"Must Be In A Home To Add A Todo"
+            })
+        }     
 });
 
 //put request is used to delete a todo from the home objects todo list 

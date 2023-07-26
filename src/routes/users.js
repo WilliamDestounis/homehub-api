@@ -87,6 +87,7 @@ router.post("/register", async (req,res)=>{
     const newUser =  new UserModel({
         username:username,
         password: hashedPass,
+        message: "Registration Complete"
     })
 
     //save

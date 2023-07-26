@@ -83,7 +83,8 @@ router.post("/register", async (req,res)=>{
         return res.json({message:"This Username Already Exists"})
     }
     }catch(e){
-        return res.json({message:e})
+        console.log(e)
+        return res.json({message:"error})
     }
     
 

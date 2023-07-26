@@ -19,7 +19,7 @@ app.use(cors()) //enables requests from different domains
 
 //imports for ENV variable
 import dotenv from "dotenv"
-dotenv.config()
+dotenv.config(),
 
 // defining env variable to secure 
 const env_variable = process.env.PASS

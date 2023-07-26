@@ -29,7 +29,7 @@ const env_variable = process.env.PASS
 
 app.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials","true");
-    res.send(`Welcome to the HomeHub API! - ${env_variable}`);
+    res.send(`Welcome to the HomeHub API!`);
   });
 
 app.use("/auth",userRouter)

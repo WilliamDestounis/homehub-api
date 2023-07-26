@@ -76,7 +76,7 @@ router.post("/register", async (req,res)=>{
     try{
 
     //checking to see if there is a username in the system 
-    const user = await UserModel.findOne({username: username}).maxTimeMS(30000);
+    const user = await UserModel.findOne({username: username});
 
     if(user){
         //if true, return a message 

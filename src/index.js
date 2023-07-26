@@ -20,7 +20,7 @@ app.use(cors()) //enables requests from different domains
 //creating route paths 
 
 app.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Credentials","true")
+    res.setHeader("Access-Control-Allow-Credentials","true");
     res.send("Welcome to the HomeHub API!");
   });
 

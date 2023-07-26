@@ -73,6 +73,8 @@ router.post("/register", async (req,res)=>{
         return res.json({message:"Must Enter A Password"})
     }
 
+    try{
+
     //checking to see if there is a username in the system 
     const user = await UserModel.findOne({username: username});
 
@@ -80,6 +82,10 @@ router.post("/register", async (req,res)=>{
         //if true, return a message 
         return res.json({message:"This Username Already Exists"})
     }
+    }catch(e){
+        return res.json({message:e})
+    }
+    
 
     //if not, create a newUser, with a hashed password
     const hashedPass = await bcrypt.hash(password,10)

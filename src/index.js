@@ -17,11 +17,19 @@ app.use(express.json()) //built in express middleware to parse incoming json req
 app.use(cors()) //enables requests from different domains 
 
 
+//imports for ENV variable
+import dotenv from "dotenv"
+dotenv.config()
+
+// defining env variable to secure 
+const env_variable = process.env.PASS
+
+
 //creating route paths 
 
 app.get("/", (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials","true");
-    res.send("Welcome to the HomeHub API!");
+    res.send(`Welcome to the HomeHub API! - ${env_variable}`);
   });
 
 app.use("/auth",userRouter)
@@ -35,16 +43,6 @@ app.use("/chat",chatRouter)
 app.use("/ledger",ledgerRouter)
 
 app.use("/remove",removeRouter)
-
-
-//imports for ENV variable
-import dotenv from "dotenv"
-dotenv.config()
-
-// defining env variable to secure 
-const env_variable = process.env.PASS
-
-console.log(env_variable)
 
 //using mongoose to connect to MongoDB database
 mongoose.connect(`mongodb+srv://testAdmin:${env_variable}@homehubserver.yi9s3vq.mongodb.net/homehubserver?retryWrites=true&w=majority`);

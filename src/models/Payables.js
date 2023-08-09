@@ -6,7 +6,7 @@ const PayablesSchema = new mongoose.Schema({
     recId:{type:mongoose.Schema.Types.ObjectId,ref: "recievables"}, //holds the objectId of the associated recievable model
     expName: {type:String,required: true},
     exp:{type:String,required: true},
-    splitAmount: [{type:Number,required: true}],
+    splitAmount: {type:Number,required: true},
 })
 
 //PayablesModel is created and exported for use
